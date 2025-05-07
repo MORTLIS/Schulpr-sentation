@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Die Verbindung mit XAMPP</title>
+  <link rel="stylesheet" href="seite_1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="seite_3/css/style.css">
+</head>
+<body>
+<div class="container">
+  <div class="info">
+    <a href="index.html">Über mich</a>
+    <a href="linux.html">Linux Installation</a>
+    <p class="info_p">XAMPP</p>
+    <a href="tabelle.html">Tabelle</a>
+    <a href="Präsentation.html">Präsentation</a>
+    <a href="Scanner.html">DruckScan</a>
+  </div>
+
+  <h1>Wie funktioniert die Verbindung zwischen zwei Computern mit XAMPP?</h1>
+
+  <p>Wenn zwei Computer im gleichen Netzwerk sind und einer XAMPP gestartet hat, kann der zweite Computer darauf zugreifen. Lass uns Schritt für Schritt erklären, wie das funktioniert.</p>
+
+  <h2>1. Verbindung starten (TCP-Verbindung aufbauen)</h2>
+  <p>Bevor Daten gesendet werden, baut der Browser eine TCP-Verbindung mit dem Server auf.</p>
+  <p>Das passiert in drei Schritten:</p>
+  <ul>
+    <li>Der Client (zweiter Computer) sendet SYN (synchronize) – eine Anfrage zur Verbindung.</li>
+    <li>Der Server (XAMPP) antwortet mit SYN-ACK (synchronize-acknowledge).</li>
+    <li>Der Client sendet ACK (acknowledge) – die Verbindung ist bereit.</li>
+  </ul>
+  <p>Jetzt kann der Browser eine HTTP-Anfrage senden.</p>
+
+
+  <h2>2. Der Client sendet eine HTTP-Anfrage</h2>
+  <p>Wenn du http://192.168.1.100/index.html in den Browser eingibst, sendet er eine HTTP-Anfrage an den Server.</p>
+  <h3>Beispiel für eine HTTP-Anfrage:</h3>
+  <img src="seite_3/img/img_1.png" alt="">
+
+  <h3>🔹 Was passiert hier?</h3>
+  <ul>
+    <li>GET /index.html → Der Client fragt nach der Datei index.html.</li>
+    <li>Host: 192.168.1.100 → Der Server, zu dem die Anfrage geht.</li>
+    <li>User-Agent: ... → Der Browser (Chrome, Firefox, usw.).</li>
+    <li>Accept: text/html → Der Client möchte eine HTML-Seite erhalten.
+    </li>
+  </ul>
+
+  <h2>3. Der Server (XAMPP) verarbeitet die Anfrage</h2>
+  <p>Der Apache-Server in XAMPP:</p>
+  <ul>
+    <li>Prüft, ob die Datei index.html im Ordner htdocs vorhanden ist.</li>
+    <li>Wenn ja → Der Server bereitet die Antwort vor.</li>
+    <li>Wenn nein → Der Server sendet eine 404 Not Found Fehlermeldung.</li>
+  </ul>
+
+  <h2>4. Der Server sendet eine HTTP-Antwort</h2>
+  <p>Wenn alles korrekt ist, sendet Apache eine Antwort an den Browser.</p>
+  <h3>Beispiel für eine HTTP-Antwort:</h3>
+  <img src="seite_3/img/img_2.png" alt="">
+
+  <h3>🔹 Was passiert hier?</h3>
+  <ul>
+    <li>HTTP/1.1 200 OK → Die Seite wurde erfolgreich gefunden.</li>
+    <li>Date: ... → Datum und Uhrzeit der Antwort.</li>
+    <li>Server: Apache/2.4.41 (Win64) XAMPP → Informationen über den Server.</li>
+    <li>Content-Type: text/html → Die Antwort enthält eine HTML-Seite.</li>
+    <li>Content-Length: 234 → Die Größe des HTML-Codes.</li>
+  </ul>
+  <p>Nach diesen Header-Daten kommt der HTML-Code der Seite.</p>
+
+  <h2>5. Der Browser zeigt die Webseite an</h2>
+  <ul>
+    <li>Der Browser empfängt den HTML-Code und analysiert ihn.</li>
+    <li>Wenn Bilder, CSS oder JavaScript benötigt werden, sendet der Browser zusätzliche HTTP-Anfragen an den Server.</li>
+    <li>Sobald alle Daten geladen sind, zeigt der Browser die Seite an.</li>
+  </ul>
+
+  <h2>6. Verbindung beenden</h2>
+  <p>Die Verbindung bleibt offen (Connection: keep-alive), um weitere Dateien schneller zu laden.</p>
+  <p>Oder die Verbindung wird geschlossen (Connection: close), wenn keine weiteren Daten gebraucht werden.</p>
+
+  <h2>Beispiel für alle Anfragen und Antworten</h2>
+  <h3>Beispiel für alle Anfragen und Antworten</h3>
+  <h5>Anfrage (vom Client an den Server)</h5>
+  <img src="seite_3/img/img_3.png" alt="">
+  <h5>Antwort (vom Server an den Client)</h5>
+  <img src="seite_3/img/img_4.png" alt="">
+
+  <h2>🔹 2. Der Browser entdeckt ein Bild und fragt danach</h2>
+  <h5>Anfrage</h5>
+  <img src="seite_3/img/img_5.png" alt="">
+  <h5>Antwort</h5>
+  <img src="seite_3/img/img_6.png" alt="">
+
+  <h2>Fazit</h2>
+  <p>Wenn ein zweiter Computer mit dem XAMPP-Server verbunden ist, passiert folgendes:</p>
+  <ul>
+    <li>Der Browser baut eine TCP-Verbindung zum Server auf.</li>
+    <li>Der Client sendet eine HTTP-Anfrage (z. B. GET /index.html).</li>
+    <li>Der Server sucht die Datei und bereitet eine Antwort vor.</li>
+    <li>Der Server sendet eine HTTP-Antwort mit HTML-Code.</li>
+    <li>Der Browser lädt und zeigt die Webseite.</li>
+    <li>Zusätzliche Dateien (CSS, Bilder, JS) werden mit weiteren Anfragen geladen.</li>
+    <li>Die Verbindung bleibt offen oder wird geschlossen.</li>
+  </ul>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
